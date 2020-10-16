@@ -6,7 +6,6 @@
 import Joi from 'joi'
 import Nua from 'nua'
 
-
 const reals: any = {
   string: String,
   number: Number,
@@ -20,9 +19,7 @@ const reals: any = {
   object: Object,
 }
 
-
 function JoiProps(schema: object) {
-
   let joischema = Joi.object(schema)
   let props: any = {}
 
@@ -35,12 +32,14 @@ function JoiProps(schema: object) {
 
     props[key] = {
       type: real,
-      default: 'object' !== type ? term.schema._flags.default :
-        () => {
-          // NOTE: this will fail for schemas that do not provide full defaults,
-          // which is what you want - required values are, you know, required.
-          return Joi.attempt({}, term.schema)
-        }
+      default:
+        'object' !== type
+          ? term.schema._flags.default
+          : () => {
+              // NOTE: this will fail for schemas that do not provide full defaults,
+              // which is what you want - required values are, you know, required.
+              return Joi.attempt({}, term.schema)
+            },
     }
   })
 
@@ -49,20 +48,14 @@ function JoiProps(schema: object) {
     beforeCreate() {
       let props = this.$options.propsData
 
-      // Nua is an object-preserving merge, and thus 
+      // Nua is an object-preserving merge, and thus
       // does not destroy Vue observers.
       Nua(props, Joi.attempt(props, joischema))
-    }
+    },
   }
 }
-
 
 JoiProps.Joi = Joi
 JoiProps.Nua = Nua
 
-
-export {
-  JoiProps,
-  Joi,
-  Nua
-}
+export { JoiProps, Joi, Nua }

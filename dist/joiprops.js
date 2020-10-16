@@ -34,22 +34,23 @@ function JoiProps(schema) {
         let real = reals[type] || Object;
         props[key] = {
             type: real,
-            default: 'object' !== type ? term.schema._flags.default :
-                () => {
+            default: 'object' !== type
+                ? term.schema._flags.default
+                : () => {
                     // NOTE: this will fail for schemas that do not provide full defaults,
                     // which is what you want - required values are, you know, required.
                     return joi_1.default.attempt({}, term.schema);
-                }
+                },
         };
     });
     return {
         props,
         beforeCreate() {
             let props = this.$options.propsData;
-            // Nua is an object-preserving merge, and thus 
+            // Nua is an object-preserving merge, and thus
             // does not destroy Vue observers.
             nua_1.default(props, joi_1.default.attempt(props, joischema));
-        }
+        },
     };
 }
 exports.JoiProps = JoiProps;

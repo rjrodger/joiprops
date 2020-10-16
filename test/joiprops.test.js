@@ -13,14 +13,13 @@ const expect = Code.expect
 
 const { JoiProps, Joi } = require('..')
 
-
 describe('joiprops', function () {
   it('happy', () => {
     const s = {
       a: Joi.string().required(),
-      b: Joi.string().default('B')
+      b: Joi.string().default('B'),
     }
-    
+
     const mixin = JoiProps(s)
 
     expect(Object.keys(mixin.props)).equal(['a', 'b'])
@@ -28,11 +27,11 @@ describe('joiprops', function () {
     let vc0 = {
       $options: {
         propsData: {
-          a: 'A'
-        }
-      }
+          a: 'A',
+        },
+      },
     }
-    
+
     mixin.beforeCreate.call(vc0)
 
     expect(vc0.$options.propsData).equal({ a: 'A', b: 'B' })
