@@ -30,7 +30,7 @@ describe('joiprops', function () {
           a: 'A',
 
           // to be left alone
-          x: { y: { z: 1 } }
+          x: { y: { z: 1 } },
         },
       },
     }
