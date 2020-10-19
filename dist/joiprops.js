@@ -24,7 +24,7 @@ const reals = {
     object: Object,
 };
 function JoiProps(schema) {
-    let joischema = joi_1.default.object(schema);
+    let joischema = joi_1.default.object(schema).unknown().default();
     let props = {};
     // Magic below ensures prop types and defaults are correctly defined
     // for Vue (otherwise they get obliterated by reactivity).

@@ -28,12 +28,19 @@ describe('joiprops', function () {
       $options: {
         propsData: {
           a: 'A',
+
+          // to be left alone
+          x: { y: { z: 1 } }
         },
       },
     }
 
     mixin.beforeCreate.call(vc0)
 
-    expect(vc0.$options.propsData).equal({ a: 'A', b: 'B' })
+    expect(vc0.$options.propsData).equal({
+      a: 'A',
+      b: 'B',
+      x: { y: { z: 1 } },
+    })
   })
 })
