@@ -40,10 +40,10 @@ function JoiProps(schema: object) {
         'object' !== type
           ? term.schema._flags.default
           : () => {
-              // NOTE: this will fail for schemas that do not provide full defaults,
-              // which is what you want - required values are, you know, required.
-              return Joi.attempt({}, term.schema)
-            },
+            // NOTE: this will fail for schemas that do not provide full defaults,
+            // which is what you want - required values are, you know, required.
+            return Joi.attempt({}, term.schema)
+          },
     }
   })
 
@@ -60,8 +60,8 @@ function JoiProps(schema: object) {
           props,
           joischema,
           'JoiProps:' +
-            resolve_component_name(this.$options) +
-            ' props validation failed:'
+          resolve_component_name(this.$options) +
+          ' props validation failed:'
         )
       )
     },
@@ -99,5 +99,7 @@ const JO = (JoiProps.JO = (o: any | Symbol) =>
 const JA = (JoiProps.JA = (a: any | Symbol) =>
   null == a ? ja : Jr === a ? ja.required() : ja.items(a).default([]))
 const JOu = (JoiProps.JOu = (o: any) => JO(o).unknown())
+const JAd = (JoiProps.JAd = (a: any) => ja.default(a))
+const JOd = (JoiProps.JOd = (o: any) => jo.default(o))
 
-export { JoiProps, Joi, Nua, JT, JF, JB, JS, JN, JO, JA, JOu, Jr }
+export { JoiProps, Joi, Nua, JT, JF, JB, JS, JN, JO, JA, JOu, JOd, JAd, Jr }

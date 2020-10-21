@@ -15,6 +15,8 @@ declare namespace JoiProps {
     var JO: (o: any) => Joi.ObjectSchema<any>;
     var JA: (a: any) => Joi.ArraySchema;
     var JOu: (o: any) => Joi.ObjectSchema<any>;
+    var JAd: (a: any) => Joi.ArraySchema;
+    var JOd: (o: any) => Joi.ObjectSchema<any>;
 }
 declare const Jr: unique symbol;
 declare const JT: Joi.BooleanSchema;
@@ -25,4 +27,6 @@ declare const JN: (n: number | Symbol) => Joi.NumberSchema;
 declare const JO: (o: any | Symbol) => Joi.ObjectSchema<any>;
 declare const JA: (a: any | Symbol) => Joi.ArraySchema;
 declare const JOu: (o: any) => Joi.ObjectSchema<any>;
-export { JoiProps, Joi, Nua, JT, JF, JB, JS, JN, JO, JA, JOu, Jr };
+declare const JAd: (a: any) => Joi.ArraySchema;
+declare const JOd: (o: any) => Joi.ObjectSchema<any>;
+export { JoiProps, Joi, Nua, JT, JF, JB, JS, JN, JO, JA, JOu, JOd, JAd, Jr };

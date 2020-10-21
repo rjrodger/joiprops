@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Jr = exports.JOu = exports.JA = exports.JO = exports.JN = exports.JS = exports.JB = exports.JF = exports.JT = exports.Nua = exports.Joi = exports.JoiProps = void 0;
+exports.Jr = exports.JAd = exports.JOd = exports.JOu = exports.JA = exports.JO = exports.JN = exports.JS = exports.JB = exports.JF = exports.JT = exports.Nua = exports.Joi = exports.JoiProps = void 0;
 // TODO: implement sibling mixin for yup: https://github.com/jquense/yup
 const joi_1 = __importDefault(require("joi"));
 exports.Joi = joi_1.default;
@@ -90,4 +90,8 @@ const JA = (JoiProps.JA = (a) => null == a ? ja : Jr === a ? ja.required() : ja.
 exports.JA = JA;
 const JOu = (JoiProps.JOu = (o) => JO(o).unknown());
 exports.JOu = JOu;
+const JAd = (JoiProps.JAd = (a) => ja.default(a));
+exports.JAd = JAd;
+const JOd = (JoiProps.JOd = (o) => jo.default(o));
+exports.JOd = JOd;
 //# sourceMappingURL=joiprops.js.map

@@ -8,7 +8,7 @@ Use [Joi Schemas](https://joi.dev/) for your [Vue](https://vuejs.org/) component
 [![dependencies Status](https://david-dm.org/rjrodger/joiprops/status.svg)](https://david-dm.org/rjrodger/joiprops)
 
 
-# Why?
+## Why?
 
 Vue props that have deep object structure (including defaults) cannot
 be easily defined using standard Vue prop validation which has
@@ -17,13 +17,13 @@ be easily defined using standard Vue prop validation which has
 The [Joi](https://joi.dev/) schema validator provides a way to do this.
 
 
-# How?
+## How?
 
 A Vue mixin is used as this provides sufficient access to the prop
 definitions before the component lifecycle starts.
 
 
-# Quick Example
+## Quick Example
 
 This example creates an `a` prop (notice that you don't need to define
 this in the traditional `props` component attribute) that is a object
@@ -95,10 +95,10 @@ npm install joiprops
 ```
 
 
-# Important Notes
+## Important Notes
 
 * Access to `Joi` is provided so you don't need to import it separately: `import { JoiPrps, Joi } from 'joiprops'`
-  * When bundling (and perhaps using `Joi` elsewhere), you may wish to import `dist/joiprops.js` directly for better tree shaking.
+  * When bundling (and perhaps using `Joi` elsewhere), you may wish to import `dist/joiprops.js` directly for better tree shaking. You need to import the dependencies [joiprops](https://www.npmjs.com/package/joiprops) and [nua](https://www.npmjs.com/package/nua) separately yourself.
 * `JoiProps` is a function that builds a mixin from your Joi schema. Use it like so:
 ```
 export default {
@@ -114,6 +114,56 @@ export default {
 * The first argument to `JoiProps` can be a plain object or a `Joi` schema. In either case, the top level keys become the props of the Vue component.
 * You can use traditional props at the same time as `JoiProps` if you define your schema with a plain object, or the schema you provide allows for unknown keys.
 * `Joi` is big-ish, and not orginally designed for browsers, but I guess if you've read this far, you, like me, kind like it in your web apps anyway...
+
+
+## Convenience Schemas
+
+Joi schemacs can be little verbose, so _joiprops_ provides some
+convenience abbreviations:
+
+```
+import { JoiProps, Joi, JO, JS } from 'joiprops'
+
+const props = JoiProps({
+  foo: JO({
+    bar: JS('BAR')
+  })
+})
+
+// equivalent:
+const props = JoiProps({
+  foo: Joi.object({
+    bar: Joi.string('BAR')
+  })
+})
+```
+
+The available abbreviations are:
+* `JO`: `Joi.object()`
+* `JA`: `Joi.array()`
+* `JS`: `Joi.string()`
+* `JN`: `Joi.number()`
+* `JB`: `Joi.boolean()`
+* `JT`: `Joi.boolean().default(true)`
+* `JF`: `Joi.boolean().default(false)`
+* `JS(stringValue)`: `Joi.string().default(stringValue)`
+* `JN(numberValue)`: `Joi.number().default(numberValue)`
+* `JB(booleanValue)`: `Joi.boolean().default(booleanValue)`
+* `JO(objectSchema)`: `Joi.object(objectSchema)`
+* `JA(itemSchema)`: `Joi.array().items(itemSchema)`
+* `JS(Jr)`: `Joi.string().required()`
+* `JN(Jr)`: `Joi.number().required()`
+* `JB(Jr)`: `Joi.boolean().required()`
+* `JA(Jr)`: `Joi.array().required()`
+* `JO(Jr)`: `Joi.object().required()`
+* `JOd(objectValue)`: `Joi.object().default(objectValue)`
+* `JAd(arrayValue)`: `Joi.object().default(arrayValue)`
+* `JOu(objectSchema)`: `Joi.object().default(objectValue)`
+
+Import the abbreviations as needed from `JoiProps`:
+```
+import { JoiProps, Joi, JT, JF, JB, JS, JN, JO, JA, JOu, JOd, JAd, Jr } from 'joiprops'
+```
 
 
 # Building
