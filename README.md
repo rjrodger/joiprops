@@ -139,11 +139,11 @@ const props = JoiProps({
 ```
 
 The available abbreviations are:
-* `JO`: `Joi.object()`
-* `JA`: `Joi.array()`
-* `JS`: `Joi.string()`
-* `JN`: `Joi.number()`
-* `JB`: `Joi.boolean()`
+* `JO()`: `Joi.object()`
+* `JA()`: `Joi.array()`
+* `JS()`: `Joi.string()`
+* `JN()`: `Joi.number()`
+* `JB()`: `Joi.boolean()`
 * `JT`: `Joi.boolean().default(true)`
 * `JF`: `Joi.boolean().default(false)`
 * `JS(stringValue)`: `Joi.string().default(stringValue)`

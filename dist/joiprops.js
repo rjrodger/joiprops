@@ -88,7 +88,7 @@ const JO = (JoiProps.JO = (o) => null == o ? jo : Jr === o ? jo.required() : joi
 exports.JO = JO;
 const JA = (JoiProps.JA = (a) => null == a ? ja : Jr === a ? ja.required() : ja.items(a).default([]));
 exports.JA = JA;
-const JOu = (JoiProps.JOu = (o) => JO(o).unknown());
+const JOu = (JoiProps.JOu = (o) => null == o ? jo.unknown() : joi_1.default.object(o).unknown());
 exports.JOu = JOu;
 const JAd = (JoiProps.JAd = (a) => ja.default(a));
 exports.JAd = JAd;
