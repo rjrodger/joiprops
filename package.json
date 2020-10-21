@@ -1,6 +1,6 @@
 {
   "name": "joiprops",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Use Joi Schemas for your Vue component prop validation (and deep structure defaults).",
   "main": "dist/joiprops.js",
   "browser": "dist/joiprops.min.js",

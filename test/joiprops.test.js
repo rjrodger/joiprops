@@ -132,6 +132,7 @@ describe('joiprops', function () {
       p: JAd([1, 2]),
       //q: JOu({x: Joi.string().required()}),
       q: JOu({ x: JS() }),
+      u: JOu({ x: JOu({ y: JS('Y') }) }),
     })
 
     expect(
@@ -163,6 +164,7 @@ describe('joiprops', function () {
       o: { x: 1 },
       p: [1, 2],
       q: { y: 1, x: 'X' },
+      u: { x: { y: 'Y' } },
     })
 
     try {

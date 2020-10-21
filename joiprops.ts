@@ -99,7 +99,7 @@ const JO = (JoiProps.JO = (o: any | Symbol) =>
 const JA = (JoiProps.JA = (a: any | Symbol) =>
   null == a ? ja : Jr === a ? ja.required() : ja.items(a).default([]))
 const JOu = (JoiProps.JOu = (o: any) =>
-  null == o ? jo.unknown() : Joi.object(o).unknown())
+  null == o ? jo.unknown().default() : Joi.object(o).unknown().default())
 const JAd = (JoiProps.JAd = (a: any) => ja.default(a))
 const JOd = (JoiProps.JOd = (o: any) => jo.unknown().default(o))
 
