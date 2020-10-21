@@ -11,7 +11,7 @@ const describe = lab.describe
 const it = lab.it
 const expect = Code.expect
 
-const { JoiProps, Joi, JO, JA, JS, JN, JB, JT, JF } = require('..')
+const { JoiProps, Joi, JO, JA, JS, JN, JB, JT, JF, JOu, Jr } = require('..')
 
 describe('joiprops', function () {
   it('happy', () => {
@@ -103,23 +103,42 @@ describe('joiprops', function () {
       a: JS('A'),
       b: JN(1).min(0),
       c: JS(),
-      d: JB(),
+      d: JB(Jr),
       e: JB(false),
       f: JT,
       g: JF,
       h: JO(),
       i: JA(),
       j: JA(JO({ jj: JT })),
+      k: JOu(),
+      l: JS(Jr),
+      m: JN(Jr),
+      n: JA(Jr),
     })
 
-    expect(Joi.attempt({}, s)).equal({
-      a: 'A',
-      b: 1,
-      e: false,
-      f: true,
-      g: false,
-      j: [],
-    })
+    expect(Joi.attempt(
+      {
+        d: true,
+        k: {
+          kk: 1
+        },
+        l: 'L',
+        m: 10,
+        n: [],
+      }, s))
+      .equal({
+        a: 'A',
+        b: 1,
+        d: true,
+        e: false,
+        f: true,
+        g: false,
+        j: [],
+        k: { kk: 1},
+        l: 'L',
+        m: 10,
+        n: [],
+      })
 
     try {
       Joi.attempt({ b: -1 }, s)
@@ -129,7 +148,7 @@ describe('joiprops', function () {
     }
 
     try {
-      Joi.attempt({ j: [{ jj: 0 }] }, s)
+      Joi.attempt({ d: true, l:'L', m: 10, n: [], j: [{ jj: 0 }] }, s)
       Code.fail()
     } catch (e) {
       expect(e.message).equal('"j[0].jj" must be a boolean')

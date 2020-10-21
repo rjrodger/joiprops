@@ -40,10 +40,10 @@ function JoiProps(schema: object) {
         'object' !== type
           ? term.schema._flags.default
           : () => {
-              // NOTE: this will fail for schemas that do not provide full defaults,
-              // which is what you want - required values are, you know, required.
-              return Joi.attempt({}, term.schema)
-            },
+            // NOTE: this will fail for schemas that do not provide full defaults,
+            // which is what you want - required values are, you know, required.
+            return Joi.attempt({}, term.schema)
+          },
     }
   })
 
@@ -60,8 +60,8 @@ function JoiProps(schema: object) {
           props,
           joischema,
           'JoiProps:' +
-            resolve_component_name(this.$options) +
-            ' props validation failed:'
+          resolve_component_name(this.$options) +
+          ' props validation failed:'
         )
       )
     },
@@ -78,17 +78,39 @@ function resolve_component_name(options: any) {
 
 JoiProps.Joi = Joi
 JoiProps.Nua = Nua
-const JT = (JoiProps.JT = Joi.boolean().default(true))
-const JF = (JoiProps.JF = Joi.boolean().default(false))
-const JB = (JoiProps.JB = (b: boolean) =>
-  null == b ? Joi.boolean() : Joi.boolean().default(b))
-const JS = (JoiProps.JS = (s: string) =>
-  null == s ? Joi.string() : Joi.string().default(s))
-const JN = (JoiProps.JN = (n: number) =>
-  null == n ? Joi.number() : Joi.number().default(n))
-const JO = (JoiProps.JO = (o: any) =>
-  null == o ? Joi.object() : Joi.object(o).default())
-const JA = (JoiProps.JA = (a: any) =>
-  null == a ? Joi.array() : Joi.array().items(a).default([]))
 
-export { JoiProps, Joi, Nua, JT, JF, JB, JS, JN, JO, JA }
+const jb = Joi.boolean()
+const js = Joi.string()
+const jn = Joi.number()
+const jo = Joi.object()
+const ja = Joi.array()
+
+const Jr = Symbol('Joi_required')
+const JT = (JoiProps.JT = jb.default(true))
+const JF = (JoiProps.JF = jb.default(false))
+const JB = (JoiProps.JB = (b: boolean | Symbol) =>
+  null == b ? jb : Jr === b ? jb.required() : jb.default(b))
+const JS = (JoiProps.JS = (s: string | Symbol) =>
+  null == s ? js : Jr === s ? js.required() : js.default(s))
+const JN = (JoiProps.JN = (n: number | Symbol) =>
+  null == n ? jn : Jr === n ? jn.required() : jn.default(n))
+const JO = (JoiProps.JO = (o: any | Symbol) =>
+  null == o ? jo : Jr === o ? jo.required() : Joi.object(o).default())
+const JA = (JoiProps.JA = (a: any | Symbol) =>
+  null == a ? ja : Jr === a ? ja.required() : ja.items(a).default([]))
+const JOu = (JoiProps.JOu = (o: any) => JO(o).unknown())
+
+export {
+  JoiProps,
+  Joi,
+  Nua,
+  JT,
+  JF,
+  JB,
+  JS,
+  JN,
+  JO,
+  JA,
+  JOu,
+  Jr
+}
