@@ -2,6 +2,10 @@
 <div>
   <h1>TESTBED</h1>
 
+  DEEPER: <bar :a="aa"></bar>
+  
+  <hr />
+  
   <canary
     :a="a"
     :b="b"
@@ -24,6 +28,8 @@ export default {
     return {
       a: 'A',
       b: { e: 'E', c: { g:'G'} },
+
+      aa: {}
     }
   },
 }

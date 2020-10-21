@@ -5,8 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Nua = exports.Joi = exports.JoiProps = void 0;
-// TODO: nice error messages
-// TODO: implement for yup: https://github.com/jquense/yup
+// TODO: implement sibling mixin for yup: https://github.com/jquense/yup
 const joi_1 = __importDefault(require("joi"));
 exports.Joi = joi_1.default;
 const nua_1 = __importDefault(require("nua"));
@@ -24,7 +23,8 @@ const reals = {
     object: Object,
 };
 function JoiProps(schema) {
-    let joischema = joi_1.default.object(schema).unknown().default();
+    let joischema = joi_1.default.isSchema(schema, { legacy: true }) ? schema :
+        joi_1.default.object(schema).unknown().default();
     let props = {};
     // Magic below ensures prop types and defaults are correctly defined
     // for Vue (otherwise they get obliterated by reactivity).
@@ -49,11 +49,17 @@ function JoiProps(schema) {
             let props = this.$options.propsData;
             // Nua is an object-preserving merge, and thus
             // does not destroy Vue observers.
-            nua_1.default(props, joi_1.default.attempt(props, joischema));
+            nua_1.default(props, joi_1.default.attempt(props, joischema, 'JoiProps:' +
+                resolve_component_name(this.$options) +
+                ' props validation failed:'));
         },
     };
 }
 exports.JoiProps = JoiProps;
+function resolve_component_name(options) {
+    let cn = options && (options.name || options._componentTag || options.__file || '') || '';
+    return 0 === cn.length ? '' : ' ' + cn;
+}
 JoiProps.Joi = joi_1.default;
 JoiProps.Nua = nua_1.default;
 //# sourceMappingURL=joiprops.js.map
