@@ -92,6 +92,6 @@ const JOu = (JoiProps.JOu = (o) => JO(o).unknown());
 exports.JOu = JOu;
 const JAd = (JoiProps.JAd = (a) => ja.default(a));
 exports.JAd = JAd;
-const JOd = (JoiProps.JOd = (o) => jo.default(o));
+const JOd = (JoiProps.JOd = (o) => jo.unknown().default(o));
 exports.JOd = JOd;
 //# sourceMappingURL=joiprops.js.map

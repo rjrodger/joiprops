@@ -100,6 +100,6 @@ const JA = (JoiProps.JA = (a: any | Symbol) =>
   null == a ? ja : Jr === a ? ja.required() : ja.items(a).default([]))
 const JOu = (JoiProps.JOu = (o: any) => JO(o).unknown())
 const JAd = (JoiProps.JAd = (a: any) => ja.default(a))
-const JOd = (JoiProps.JOd = (o: any) => jo.default(o))
+const JOd = (JoiProps.JOd = (o: any) => jo.unknown().default(o))
 
 export { JoiProps, Joi, Nua, JT, JF, JB, JS, JN, JO, JA, JOu, JOd, JAd, Jr }
