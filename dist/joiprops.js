@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Nua = exports.Joi = exports.JoiProps = void 0;
+exports.JA = exports.JO = exports.JN = exports.JS = exports.JB = exports.JF = exports.JT = exports.Nua = exports.Joi = exports.JoiProps = void 0;
 // TODO: implement sibling mixin for yup: https://github.com/jquense/yup
 const joi_1 = __importDefault(require("joi"));
 exports.Joi = joi_1.default;
@@ -67,4 +67,18 @@ function resolve_component_name(options) {
 }
 JoiProps.Joi = joi_1.default;
 JoiProps.Nua = nua_1.default;
+const JT = (JoiProps.JT = joi_1.default.boolean().default(true));
+exports.JT = JT;
+const JF = (JoiProps.JF = joi_1.default.boolean().default(false));
+exports.JF = JF;
+const JB = (JoiProps.JB = (b) => null == b ? joi_1.default.boolean() : joi_1.default.boolean().default(b));
+exports.JB = JB;
+const JS = (JoiProps.JS = (s) => null == s ? joi_1.default.string() : joi_1.default.string().default(s));
+exports.JS = JS;
+const JN = (JoiProps.JN = (n) => null == n ? joi_1.default.number() : joi_1.default.number().default(n));
+exports.JN = JN;
+const JO = (JoiProps.JO = (o) => null == o ? joi_1.default.object() : joi_1.default.object(o).default());
+exports.JO = JO;
+const JA = (JoiProps.JA = (a) => null == a ? joi_1.default.array() : joi_1.default.array().items(a).default([]));
+exports.JA = JA;
 //# sourceMappingURL=joiprops.js.map

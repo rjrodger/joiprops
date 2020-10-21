@@ -78,5 +78,17 @@ function resolve_component_name(options: any) {
 
 JoiProps.Joi = Joi
 JoiProps.Nua = Nua
+const JT = (JoiProps.JT = Joi.boolean().default(true))
+const JF = (JoiProps.JF = Joi.boolean().default(false))
+const JB = (JoiProps.JB = (b: boolean) =>
+  null == b ? Joi.boolean() : Joi.boolean().default(b))
+const JS = (JoiProps.JS = (s: string) =>
+  null == s ? Joi.string() : Joi.string().default(s))
+const JN = (JoiProps.JN = (n: number) =>
+  null == n ? Joi.number() : Joi.number().default(n))
+const JO = (JoiProps.JO = (o: any) =>
+  null == o ? Joi.object() : Joi.object(o).default())
+const JA = (JoiProps.JA = (a: any) =>
+  null == a ? Joi.array() : Joi.array().items(a).default([]))
 
-export { JoiProps, Joi, Nua }
+export { JoiProps, Joi, Nua, JT, JF, JB, JS, JN, JO, JA }

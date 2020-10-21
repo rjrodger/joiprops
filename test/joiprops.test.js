@@ -11,7 +11,7 @@ const describe = lab.describe
 const it = lab.it
 const expect = Code.expect
 
-const { JoiProps, Joi } = require('..')
+const { JoiProps, Joi, JO, JA, JS, JN, JB, JT, JF } = require('..')
 
 describe('joiprops', function () {
   it('happy', () => {
@@ -95,6 +95,44 @@ describe('joiprops', function () {
       expect(e.message).equals(
         'JoiProps: foo props validation failed: "a" must be a string'
       )
+    }
+  })
+
+  it('shortcuts', () => {
+    let s = JO({
+      a: JS('A'),
+      b: JN(1).min(0),
+      c: JS(),
+      d: JB(),
+      e: JB(false),
+      f: JT,
+      g: JF,
+      h: JO(),
+      i: JA(),
+      j: JA(JO({ jj: JT })),
+    })
+
+    expect(Joi.attempt({}, s)).equal({
+      a: 'A',
+      b: 1,
+      e: false,
+      f: true,
+      g: false,
+      j: [],
+    })
+
+    try {
+      Joi.attempt({ b: -1 }, s)
+      Code.fail()
+    } catch (e) {
+      expect(e.message).equal('"b" must be greater than or equal to 0')
+    }
+
+    try {
+      Joi.attempt({ j: [{ jj: 0 }] }, s)
+      Code.fail()
+    } catch (e) {
+      expect(e.message).equal('"j[0].jj" must be a boolean')
     }
   })
 })
