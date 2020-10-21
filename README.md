@@ -3,7 +3,7 @@ Use Joi Schemas for your Vue component prop validation (and deep structure defau
 
 [![npm version](https://badge.fury.io/js/joiprops.svg)](https://badge.fury.io/js/joiprops)
 [![Build Status](https://travis-ci.com/rjrodger/joiprops.svg?branch=main)](https://travis-ci.com/rjrodger/joiprops)
-
+[![Coverage Status](https://coveralls.io/repos/github/rjrodger/joiprops/badge.svg?branch=main)](https://coveralls.io/github/rjrodger/joiprops?branch=main)
 [![Maintainability](https://api.codeclimate.com/v1/badges/29eef52f3d37f09a2d26/maintainability)](https://codeclimate.com/github/rjrodger/joiprops/maintainability)
 [![dependencies Status](https://david-dm.org/rjrodger/joiprops/status.svg)](https://david-dm.org/rjrodger/joiprops)
 
