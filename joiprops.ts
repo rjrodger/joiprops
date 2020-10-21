@@ -40,10 +40,10 @@ function JoiProps(schema: object) {
         'object' !== type
           ? term.schema._flags.default
           : () => {
-            // NOTE: this will fail for schemas that do not provide full defaults,
-            // which is what you want - required values are, you know, required.
-            return Joi.attempt({}, term.schema)
-          },
+              // NOTE: this will fail for schemas that do not provide full defaults,
+              // which is what you want - required values are, you know, required.
+              return Joi.attempt({}, term.schema)
+            },
     }
   })
 
@@ -60,8 +60,8 @@ function JoiProps(schema: object) {
           props,
           joischema,
           'JoiProps:' +
-          resolve_component_name(this.$options) +
-          ' props validation failed:'
+            resolve_component_name(this.$options) +
+            ' props validation failed:'
         )
       )
     },

@@ -11,7 +11,21 @@ const describe = lab.describe
 const it = lab.it
 const expect = Code.expect
 
-const { JoiProps, Joi, JO, JA, JS, JN, JB, JT, JF, JOu, Jr, JOd, JAd } = require('..')
+const {
+  JoiProps,
+  Joi,
+  JO,
+  JA,
+  JS,
+  JN,
+  JB,
+  JT,
+  JF,
+  JOu,
+  Jr,
+  JOd,
+  JAd,
+} = require('..')
 
 describe('joiprops', function () {
   it('happy', () => {
@@ -114,8 +128,8 @@ describe('joiprops', function () {
       l: JS(Jr),
       m: JN(Jr),
       n: JA(Jr),
-      o: JOd({x:1}),
-      p: JAd([1,2]),
+      o: JOd({ x: 1 }),
+      p: JAd([1, 2]),
     })
 
     expect(
@@ -143,8 +157,8 @@ describe('joiprops', function () {
       l: 'L',
       m: 10,
       n: [],
-      o: {x:1},
-      p: [1,2]
+      o: { x: 1 },
+      p: [1, 2],
     })
 
     try {
