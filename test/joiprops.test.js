@@ -116,29 +116,32 @@ describe('joiprops', function () {
       n: JA(Jr),
     })
 
-    expect(Joi.attempt(
-      {
-        d: true,
-        k: {
-          kk: 1
+    expect(
+      Joi.attempt(
+        {
+          d: true,
+          k: {
+            kk: 1,
+          },
+          l: 'L',
+          m: 10,
+          n: [],
         },
-        l: 'L',
-        m: 10,
-        n: [],
-      }, s))
-      .equal({
-        a: 'A',
-        b: 1,
-        d: true,
-        e: false,
-        f: true,
-        g: false,
-        j: [],
-        k: { kk: 1},
-        l: 'L',
-        m: 10,
-        n: [],
-      })
+        s
+      )
+    ).equal({
+      a: 'A',
+      b: 1,
+      d: true,
+      e: false,
+      f: true,
+      g: false,
+      j: [],
+      k: { kk: 1 },
+      l: 'L',
+      m: 10,
+      n: [],
+    })
 
     try {
       Joi.attempt({ b: -1 }, s)
@@ -148,7 +151,7 @@ describe('joiprops', function () {
     }
 
     try {
-      Joi.attempt({ d: true, l:'L', m: 10, n: [], j: [{ jj: 0 }] }, s)
+      Joi.attempt({ d: true, l: 'L', m: 10, n: [], j: [{ jj: 0 }] }, s)
       Code.fail()
     } catch (e) {
       expect(e.message).equal('"j[0].jj" must be a boolean')
