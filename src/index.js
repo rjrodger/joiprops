@@ -10,6 +10,6 @@ Vue.component('canary', Canary)
 Vue.component('foo', Foo)
 Vue.component('bar', Bar)
 
-var vue = new Vue({
+new Vue({
   render: (h) => h(App),
 }).$mount('#app')

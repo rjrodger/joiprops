@@ -1,9 +1,12 @@
 /* Copyright (c) 2020 Richard Rodger, MIT License */
+/* $lab:coverage:off$ */
 
 // TODO: implement sibling mixin for yup: https://github.com/jquense/yup
 
 import Joi from 'joi'
 import Nua from 'nua'
+
+/* $lab:coverage:on$ */
 
 const reals: any = {
   string: String,
@@ -19,8 +22,9 @@ const reals: any = {
 }
 
 function JoiProps(schema: object) {
-  let joischema: any = Joi.isSchema(schema, { legacy: true }) ? schema :
-    Joi.object(schema).unknown().default()
+  let joischema: any = Joi.isSchema(schema, { legacy: true })
+    ? schema
+    : Joi.object(schema).unknown().default()
   let props: any = {}
 
   // Magic below ensures prop types and defaults are correctly defined
@@ -36,10 +40,10 @@ function JoiProps(schema: object) {
         'object' !== type
           ? term.schema._flags.default
           : () => {
-            // NOTE: this will fail for schemas that do not provide full defaults,
-            // which is what you want - required values are, you know, required.
-            return Joi.attempt({}, term.schema)
-          },
+              // NOTE: this will fail for schemas that do not provide full defaults,
+              // which is what you want - required values are, you know, required.
+              return Joi.attempt({}, term.schema)
+            },
     }
   })
 
@@ -56,8 +60,8 @@ function JoiProps(schema: object) {
           props,
           joischema,
           'JoiProps:' +
-          resolve_component_name(this.$options) +
-          ' props validation failed:'
+            resolve_component_name(this.$options) +
+            ' props validation failed:'
         )
       )
     },
@@ -66,7 +70,9 @@ function JoiProps(schema: object) {
 
 function resolve_component_name(options: any) {
   let cn: string =
-    options && (options.name || options._componentTag || options.__file || '') || ''
+    (options &&
+      (options.name || options._componentTag || options.__file || '')) ||
+    ''
   return 0 === cn.length ? '' : ' ' + cn
 }
 

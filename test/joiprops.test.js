@@ -46,7 +46,6 @@ describe('joiprops', function () {
     })
   })
 
-
   it('accepts-joi-schema', () => {
     const s = Joi.object({
       a: Joi.string().required(),
@@ -73,7 +72,6 @@ describe('joiprops', function () {
     })
   })
 
-
   it('errors', () => {
     const s0 = {
       a: Joi.string().required(),
@@ -93,11 +91,10 @@ describe('joiprops', function () {
     try {
       mixin.beforeCreate.call(vc0)
       Code.fail()
-    }
-    catch(e) {
-      expect(e.message)
-        .equals('JoiProps: foo props validation failed: "a" must be a string')
+    } catch (e) {
+      expect(e.message).equals(
+        'JoiProps: foo props validation failed: "a" must be a string'
+      )
     }
   })
-
 })

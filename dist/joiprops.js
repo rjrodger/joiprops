@@ -1,5 +1,6 @@
 "use strict";
 /* Copyright (c) 2020 Richard Rodger, MIT License */
+/* $lab:coverage:off$ */
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -10,6 +11,7 @@ const joi_1 = __importDefault(require("joi"));
 exports.Joi = joi_1.default;
 const nua_1 = __importDefault(require("nua"));
 exports.Nua = nua_1.default;
+/* $lab:coverage:on$ */
 const reals = {
     string: String,
     number: Number,
@@ -23,8 +25,9 @@ const reals = {
     object: Object,
 };
 function JoiProps(schema) {
-    let joischema = joi_1.default.isSchema(schema, { legacy: true }) ? schema :
-        joi_1.default.object(schema).unknown().default();
+    let joischema = joi_1.default.isSchema(schema, { legacy: true })
+        ? schema
+        : joi_1.default.object(schema).unknown().default();
     let props = {};
     // Magic below ensures prop types and defaults are correctly defined
     // for Vue (otherwise they get obliterated by reactivity).
@@ -57,7 +60,9 @@ function JoiProps(schema) {
 }
 exports.JoiProps = JoiProps;
 function resolve_component_name(options) {
-    let cn = options && (options.name || options._componentTag || options.__file || '') || '';
+    let cn = (options &&
+        (options.name || options._componentTag || options.__file || '')) ||
+        '';
     return 0 === cn.length ? '' : ' ' + cn;
 }
 JoiProps.Joi = joi_1.default;

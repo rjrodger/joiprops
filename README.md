@@ -1,5 +1,5 @@
 # joiprops
-Use Joi Schemas for your Vue component prop validation (and deep structure defaults).
+Use [Joi Schemas](https://joi.dev/) for your [Vue](https://vuejs.org/) component prop validation (and deep structure defaults).
 
 [![npm version](https://badge.fury.io/js/joiprops.svg)](https://badge.fury.io/js/joiprops)
 [![Build Status](https://travis-ci.com/rjrodger/joiprops.svg?branch=main)](https://travis-ci.com/rjrodger/joiprops)
@@ -12,7 +12,7 @@ Use Joi Schemas for your Vue component prop validation (and deep structure defau
 
 Vue props that have deep object structure (including defaults) cannot
 be easily defined using standard Vue prop validation which has
-all-or-nothing defaults.
+[all-or-nothing defaults](https://vuejs.org/v2/api/#props).
 
 The [Joi](https://joi.dev/) schema validator provides a way to do this.
 
@@ -88,9 +88,17 @@ export default {
 </div>
 ```
 
+## Install
+
+```sh
+npm install joiprops
+```
+
+
 # Important Notes
 
 * Access to `Joi` is provided so you don't need to import it separately: `import { JoiPrps, Joi } from 'joiprops'`
+  * When bundling (and perhaps using `Joi` elsewhere), you may wish to import `dist/joiprops.js` directly for better tree shaking.
 * `JoiProps` is a function that builds a mixin from your Joi schema. Use it like so:
 ```
 export default {
@@ -105,5 +113,18 @@ export default {
 ```
 * The first argument to `JoiProps` can be a plain object or a `Joi` schema. In either case, the top level keys become the props of the Vue component.
 * You can use traditional props at the same time as `JoiProps` if you define your schema with a plain object, or the schema you provide allows for unknown keys.
+* `Joi` is big-ish, and not orginally designed for browsers, but I guess if you've read this far, you, like me, kind like it in your web apps anyway...
 
 
+# Building
+
+* The main code is TypeScript, but the tests are JavaScript.
+  * Run `npm run watch` to compile on demand.
+* The project is also a [vue-cli](https://cli.vuejs.org/) app for browser testing.
+  * Run `npm run serve` as normal.
+  
+  
+## License
+
+Copyright (c) 2020 Richard Rodger.
+Licensed under [MIT](./LICENSE).
